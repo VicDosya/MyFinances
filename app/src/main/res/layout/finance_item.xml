@@ -12,16 +12,34 @@
         android:orientation="horizontal"
         android:padding="5dp">
 
-        <!-- List item TextViews -->
-
-        <TextView
-            android:id="@+id/amount_text_view"
+        <!-- LinearLayout for symbol textview and amount textview -->
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="18sp"
-            tools:text="+236" />
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/amountSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingEnd="10dp"
+                />
+
+            <TextView
+                android:id="@+id/amount_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                tools:text="1400"
+                android:gravity="center" />
+
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/description_text_view"

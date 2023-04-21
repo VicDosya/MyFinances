@@ -1,5 +1,6 @@
 package com.example.myfinance.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +23,24 @@ class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val myFinance = myFinancesList[position]
+        //If plus variable is true, set it to "+" string, otherwise, "-"
+        val symbol = if(myFinance.plus) "+" else "-"
+        //Depending on the symbol of the plus variable, decide its color
+        val color = if(myFinance.plus) Color.GREEN else Color.RED
+        //Symbol text
+        holder.financeSymbol.text = symbol
+        holder.financeSymbol.setTextColor(color)
+        //Amount text
         holder.financeAmount.text = myFinance.amount.toString()
+        holder.financeAmount.setTextColor(color)
+        //Description text
         holder.financeDescription.text = myFinance.description
+        //Date text
         holder.financeDate.text = myFinance.date
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val financeSymbol: TextView = itemView.findViewById(R.id.amountSymbol)
         val financeAmount: TextView = itemView.findViewById(R.id.amount_text_view)
         val financeDescription: TextView = itemView.findViewById(R.id.description_text_view)
         val financeDate: TextView = itemView.findViewById(R.id.date_text_view)

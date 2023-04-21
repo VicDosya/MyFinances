@@ -6,6 +6,7 @@ import android.widget.Button
 import com.example.myfinance.R
 import com.example.myfinance.fragments.MyFinancesFragment
 import com.example.myfinance.fragments.SummaryFragment
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
