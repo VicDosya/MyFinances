@@ -4,4 +4,6 @@
     <string name="my_finances_button">My Finances</string>
     <string name="summary_button">Summary</string>
     <string name="myfinance_app_title">MyFinances</string>
+    <string name="left_month_button"><![CDATA[<]]></string>
+    <string name="right_month_button"><![CDATA[>]]></string>
 </resources>
