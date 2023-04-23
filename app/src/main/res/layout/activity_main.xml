@@ -48,55 +48,28 @@
                 android:text="@string/log_out_button" />
         </LinearLayout>
 
-        <!-- LinearLayout for month and year textview + left and right buttons -->
+        <!-- LinearLayout for month and year textview -->
         <LinearLayout
+            android:id="@+id/month_year_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
-            <!-- Left Button -->
-            <Button
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:text="@string/left_month_button"
-                android:textSize="20sp"
-                android:textStyle="bold"></Button>
+            android:orientation="vertical">
 
-            <!-- LinearLayout to wrap the month and year vertically -->
-            <LinearLayout
+            <!-- Month TextView -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <!-- Month TextView -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="November"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-                <!-- Year TextView -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2023"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <!-- Right Button -->
-            <Button
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_weight="1"
-                android:text="@string/right_month_button"
+                android:text="November"
                 android:textSize="20sp"
-                android:textStyle="bold"></Button>
+                android:textStyle="bold" />
+            <!-- Year TextView -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2023"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- FrameLayout (Used for dynamically add & replace fragments) -->
