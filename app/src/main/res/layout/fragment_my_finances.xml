@@ -6,12 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".fragments.MyFinancesFragment">
 
+    <!-- Swipe Refresh Layout -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <!-- RecyclerView  -->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/my_finances_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_add_button"
