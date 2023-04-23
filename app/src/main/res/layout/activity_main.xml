@@ -58,16 +58,16 @@
 
             <!-- Month TextView -->
             <TextView
+                android:id="@+id/month_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="November"
                 android:textSize="20sp"
                 android:textStyle="bold" />
             <!-- Year TextView -->
             <TextView
+                android:id="@+id/year_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2023"
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
