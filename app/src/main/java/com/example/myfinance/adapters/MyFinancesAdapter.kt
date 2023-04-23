@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinance.R
 import com.example.myfinance.data.MyFinanceModal
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
     RecyclerView.Adapter<MyFinancesAdapter.MyViewHolder>() {
@@ -36,7 +38,8 @@ class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
         //Description text
         holder.financeDescription.text = myFinance.description
         //Date text
-        holder.financeDate.text = myFinance.date
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        holder.financeDate.text = dateFormat.format(myFinance.date.toDate())
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
