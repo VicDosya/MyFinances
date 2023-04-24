@@ -1,15 +1,25 @@
 package com.example.myfinance.activities
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import com.example.myfinance.R
 import com.example.myfinance.fragments.MyFinancesFragment
 import com.example.myfinance.fragments.SummaryFragment
 import com.google.android.material.snackbar.Snackbar
+import java.text.DateFormatSymbols
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Check if there is a message extra from any Activity - display a Snack-bar
-        if(intent.hasExtra("message")) {
+        if (intent.hasExtra("message")) {
             val message = intent.getStringExtra("message")
             val rootView = findViewById<View>(android.R.id.content)
             if (message != null) {
@@ -66,5 +76,4 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
     }
-
 }
