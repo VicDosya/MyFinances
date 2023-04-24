@@ -119,8 +119,8 @@ class MyFinancesFragment : Fragment() {
 
     private fun updateList(financeList: ArrayList<MyFinanceModal>) {
         //Calculate total plus and minus amounts
-        var totalPlusAmount: Double = 0.0
-        var totalMinusAmount: Double = 0.0
+        var totalPlusAmount = 0.0
+        var totalMinusAmount = 0.0
         for (finance in financeList) {
             if (finance.plus) {
                 totalPlusAmount += finance.amount
@@ -138,7 +138,7 @@ class MyFinancesFragment : Fragment() {
         myFinancesRecyclerView.adapter = myFinancesAdapter
     }
 
-    fun loadFinanceData(month: Int, year: Int) {
+    private fun loadFinanceData(month: Int, year: Int) {
         //Calendar Instances (start to end)
         val calendarStart = Calendar.getInstance().apply {
             set(Calendar.YEAR, year)
