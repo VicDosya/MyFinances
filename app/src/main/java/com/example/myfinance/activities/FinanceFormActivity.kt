@@ -20,7 +20,7 @@ import java.util.Calendar
 
 class FinanceFormActivity : AppCompatActivity() {
 
-    //Initialize the finances collection (Firestore is initialized in MyFinanceApplication)
+    //Initialize the finances collection (fire store is initialized in MyFinanceApplication)
     private val db = FirebaseFirestore.getInstance()
     private val financeCollectionRef = db.collection("finances")
 
@@ -33,7 +33,7 @@ class FinanceFormActivity : AppCompatActivity() {
         //Set the ActionBar title
         supportActionBar?.title = "Add Financial Amount"
 
-        //"Add" button listener to add input data on Firestore
+        //"Add" button listener to add input data on fire store
         //Get all view from the layouts
         val addButton = findViewById<Button>(R.id.add_button)
         val plusMinusSwitch = findViewById<Switch>(R.id.plus_minus_switch)
@@ -101,12 +101,12 @@ class FinanceFormActivity : AppCompatActivity() {
                 }
             }
 
-            // If all fields are filled, add data to Firestore
+            // If all fields are filled, add data to fire store
             if (!inputLayouts.any { it.isErrorEnabled }) {
                 financeCollectionRef.add(MyFinanceModal(isPlus, amount, description, date))
                     .addOnSuccessListener {
                         //Success message in Logcat
-                        Log.i("Firestore", "Finance card data has been added to firestore.")
+                        Log.i("Fire Store", "Finance card data has been added to fire store.")
                         // Navigate back home with a success message extra (to main activity)
                         val intent = Intent(this, MainActivity::class.java)
                         intent.putExtra("message", "Finance card added successfully!")
@@ -114,8 +114,8 @@ class FinanceFormActivity : AppCompatActivity() {
                         finish()
                     }
                     .addOnFailureListener {
-                        //Show error message in Snackbar and in Logcat
-                        Log.d("Firestore", "Error Adding Finance card: ", it)
+                        //Show error message in Snack-bar and in Logcat
+                        Log.d("Fire Store", "Error Adding Finance card: ", it)
                         Snackbar.make(
                             findViewById(android.R.id.content),
                             "Error adding finance card: ${it.message}",

@@ -6,4 +6,6 @@
     <string name="myfinance_app_title">MyFinances</string>
     <string name="left_month_button"><![CDATA[<]]></string>
     <string name="right_month_button"><![CDATA[>]]></string>
+    <string name="total_plus_amount">+%.2f</string>
+    <string name="total_minus_amount">-%.2f</string>
 </resources>
