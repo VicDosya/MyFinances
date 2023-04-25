@@ -8,6 +8,5 @@ class MyFinanceApplication : Application() {
         super.onCreate()
         //Initialize Firebase
         FirebaseApp.initializeApp(this)
-
     }
 }

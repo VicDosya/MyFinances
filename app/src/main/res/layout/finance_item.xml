@@ -16,27 +16,26 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:layout_weight="1"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/amountSymbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+"
+                android:paddingHorizontal="10dp"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:paddingEnd="10dp"
-                />
+                tools:text="+" />
 
             <TextView
                 android:id="@+id/amount_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:textSize="18sp"
-                tools:text="1400"
-                android:gravity="center" />
+                tools:text="1400" />
 
 
         </LinearLayout>
