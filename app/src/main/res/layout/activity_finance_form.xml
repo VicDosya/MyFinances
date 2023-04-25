@@ -23,27 +23,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Spending (-) or Earning (+)"
-                android:textSize="18sp"/>
+                android:text="@string/spending_or_earning"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <!-- Switch Options LinearLayout (Choose + or - ) -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
             <!-- Plus TextView -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textSize="30sp"
-                android:text="-" />
+                android:text="@string/minus_symbol"
+                android:textSize="30sp" />
 
             <!-- Switch Option -->
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/plus_minus_switch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,8 +56,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="+"
-                android:textSize="30sp"/>
+                android:text="@string/plus_symbol"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -72,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:gravity="center"
-                android:text="Amount:" />
+                android:text="@string/amount_text_view" />
             <!-- Amount Input Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/amount_input_layout"
@@ -86,7 +85,7 @@
                     android:id="@+id/amount_input_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter the amount"
+                    android:hint="@string/enter_the_amount"
                     android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
                     android:maxLength="6"
@@ -105,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:gravity="center"
-                android:text="Short Description:" />
+                android:text="@string/short_description_textview" />
             <!-- Description Input Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/description_input_layout"
@@ -119,7 +118,7 @@
                     android:id="@+id/description_input_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter a short description"
+                    android:hint="@string/enter_a_short_description"
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:maxLength="15"
@@ -138,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:gravity="center"
-                android:text="Date:" />
+                android:text="@string/date_textview" />
             <!-- Date Input Field -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/date_input_layout"
@@ -152,11 +151,11 @@
                     android:id="@+id/date_input_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter the date"
+                    android:focusableInTouchMode="true"
+                    android:hint="@string/enter_the_date"
                     android:imeOptions="actionDone"
                     android:inputType="date"
-                    android:singleLine="true"
-                    android:focusableInTouchMode="true"/>
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
@@ -165,9 +164,9 @@
             android:id="@+id/add_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add"
+            android:layout_marginHorizontal="15dp"
             android:layout_marginTop="35dp"
-            android:layout_marginHorizontal="15dp"/>
+            android:text="@string/add_button" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

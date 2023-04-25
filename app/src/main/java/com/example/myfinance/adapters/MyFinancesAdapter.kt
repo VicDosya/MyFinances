@@ -26,9 +26,9 @@ class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val myFinance = myFinancesList[position]
         //If plus variable is true, set it to "+" string, otherwise, "-"
-        val symbol = if(myFinance.plus) "+" else "-"
+        val symbol = if (myFinance.plus) "+" else "-"
         //Depending on the symbol of the plus variable, decide its color
-        val color = if(myFinance.plus) Color.GREEN else Color.RED
+        val color = if (myFinance.plus) Color.GREEN else Color.RED
         //Symbol text
         holder.financeSymbol.text = symbol
         holder.financeSymbol.setTextColor(color)

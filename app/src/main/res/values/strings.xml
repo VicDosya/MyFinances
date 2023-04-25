@@ -6,4 +6,16 @@
     <string name="myfinance_app_title">MyFinances</string>
     <string name="left_month_button"><![CDATA[<]]></string>
     <string name="right_month_button"><![CDATA[>]]></string>
+    <string name="total_plus_amount">+%.2f</string>
+    <string name="total_minus_amount">-%.2f</string>
+    <string name="spending_or_earning">Spending (-) or Earning (+)</string>
+    <string name="minus_symbol">-</string>
+    <string name="plus_symbol">+</string>
+    <string name="amount_text_view">Amount:</string>
+    <string name="enter_the_amount">Enter the amount</string>
+    <string name="short_description_textview">Short Description:</string>
+    <string name="enter_a_short_description">Enter a short description</string>
+    <string name="date_textview">Date:</string>
+    <string name="enter_the_date">Enter the date</string>
+    <string name="add_button">Add</string>
 </resources>
