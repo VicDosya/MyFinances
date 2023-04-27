@@ -55,13 +55,18 @@
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/finance_bar_chart"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </com.github.mikephil.charting.charts.BarChart>
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"/>
 
 </FrameLayout>

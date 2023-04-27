@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.myfinance.R
 import com.example.myfinance.data.MyFinanceModal
-import com.github.mikephil.charting.charts.BarChart
+import com.example.myfinance.databinding.FragmentSummaryBinding
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -22,48 +20,59 @@ import java.util.Calendar
 
 class SummaryFragment : Fragment() {
 
-    private lateinit var barChart: BarChart
+    //Initialize viewBinding
+    private lateinit var binding: FragmentSummaryBinding
+
+    //Initialize Fire store connectivity
     private val db = FirebaseFirestore.getInstance()
     private val financeCollectionRef = db.collection("finances")
-    private lateinit var leftButton: Button
-    private lateinit var rightButton: Button
-    private lateinit var yearTextView: TextView
 
+    //Get today's year
     private var selectedYear: Int = Calendar.getInstance().get(Calendar.YEAR)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_summary, container, false)
-        barChart = view.findViewById(R.id.finance_bar_chart)
-        leftButton = view.findViewById(R.id.left_button)
-        rightButton = view.findViewById(R.id.right_button)
-        yearTextView = view.findViewById(R.id.year_textview)
+    ): View {
+        // Bind the view using view binding
+        binding = FragmentSummaryBinding.inflate(inflater, container, false)
+        // Get the root view from the binding
+        val view = binding.root
 
-        leftButton.setOnClickListener {
-            selectedYear--
-            updateChart()
-            updateButtonYear()
-        }
+        //Setup Left and right buttons with its year functionality
+        setupViews()
 
-        rightButton.setOnClickListener {
-            selectedYear++
-            updateChart()
-            updateButtonYear()
-        }
-
+        //Update the chart
         updateChart()
+
+        //Update the year text view
         updateButtonYear()
 
         return view
     }
 
+    //Setup views when pressing left or right buttons
+    private fun setupViews() {
+        with(binding) {
+            leftButton.setOnClickListener {
+                selectedYear--
+                updateChart()
+                updateButtonYear()
+            }
+            rightButton.setOnClickListener {
+                selectedYear++
+                updateChart()
+                updateButtonYear()
+            }
+        }
+    }
+
+    //Update the chart according to the data from fire base
     private fun updateChart() {
+        //Show progress bar
+        binding.progressBar.visibility = View.VISIBLE
         financeCollectionRef.get().addOnSuccessListener { querySnapshot ->
             val monthlyData = DoubleArray(12)
-
             var dataFound = false
 
             for (document in querySnapshot.documents) {
@@ -78,66 +87,68 @@ class SummaryFragment : Fragment() {
                     // Calculate the sum based on the selected year
                     if (year == selectedYear) {
                         dataFound = true
-                        if (it.plus) {
-                            monthlyData[month] += amount
-                        } else {
-                            monthlyData[month] -= amount
-                        }
+                        monthlyData[month] += if (it.plus) amount else -amount
                     }
                 }
             }
 
-            if(!dataFound) {
-                Snackbar.make(requireView(), "No data found for the selected year", Snackbar.LENGTH_LONG).show()
-                barChart.visibility = View.INVISIBLE
+            //If data is empty on the selected year, hide bar chart and send snack-bar message
+            if (!dataFound) {
+                Snackbar.make(
+                    requireView(),
+                    "No data found for the selected year",
+                    Snackbar.LENGTH_LONG
+                ).show()
+                binding.financeBarChart.visibility = View.INVISIBLE
                 return@addOnSuccessListener
             }
 
-            barChart.visibility = View.VISIBLE
+            binding.financeBarChart.visibility = View.VISIBLE
 
-            val entries = mutableListOf<BarEntry>()
-
-            for (i in monthlyData.indices) {
-                val month = (i + 1).toFloat()
-                val amount = monthlyData[i].toFloat()
-                entries.add(BarEntry(month, amount))
+            val entries = monthlyData.mapIndexed { index, amount ->
+                BarEntry(index + 1f, amount.toFloat())
             }
 
-            barChart.description.isEnabled = false
-            val xAxis = barChart.xAxis
+            //Setup Bar Chart styling
+            binding.financeBarChart.description.isEnabled = false
+            val xAxis = binding.financeBarChart.xAxis
             xAxis.valueFormatter = MonthValueFormatter()
             xAxis.position = XAxis.XAxisPosition.BOTTOM
             xAxis.setDrawGridLines(true)
             xAxis.granularity = 1f
-            xAxis.labelCount = entries.size // Set the number of labels equal to the number of entries
-            xAxis.textSize = 12f // Set x-axis label text size
-            xAxis.labelRotationAngle = -45f // Rotate x-axis labels for better visibility
+            // Set the number of labels equal to the number of entries
+            xAxis.labelCount = entries.size
+            // Set x-axis label text size
+            xAxis.textSize = 12f
+            // Rotate x-axis labels for better visibility
+            xAxis.labelRotationAngle = -45f
 
-
+            //Setup color for each bar (Above x-Axis or below)
             val dataSet = BarDataSet(entries, "Financial position each month")
             dataSet.valueTextSize = 10f // Set text size of values displayed on top of bars
-
             dataSet.colors = entries.map { entry ->
-                if(entry.y >= 0) {
-                    ContextCompat.getColor(requireContext(), R.color.bar_positive)
-                } else {
-                    // Color for positive values
-
-                    ContextCompat.getColor(requireContext(), R.color.bar_negative) // Color for negative values
-                }
+                ContextCompat.getColor(
+                    requireContext(),
+                    if (entry.y >= 0) R.color.bar_positive else R.color.bar_negative
+                )
             }
             dataSet.setDrawIcons(false)
 
             val barData = BarData(dataSet)
-            barData.barWidth = 0.75f // Adjust the width of the bars
-            barChart.data = barData
-            barChart.invalidate()
+            // Adjust the width of the bars
+            barData.barWidth = 0.75f
+            //Apply the data and update
+            binding.financeBarChart.data = barData
+            binding.financeBarChart.invalidate()
+            //Hide progress bar
+            binding.progressBar.visibility = View.INVISIBLE
         }
     }
 
+    //Update the year text view function
     private fun updateButtonYear() {
         val yearText = "$selectedYear"
-        yearTextView.text = yearText
+        binding.yearTextview.text = yearText
     }
 
     // Custom X-axis value formatter to display month labels
@@ -148,11 +159,12 @@ class SummaryFragment : Fragment() {
         )
 
         override fun getFormattedValue(value: Float): String {
-            val index = value.toInt()
-            return if (index >= 0 && index < monthLabels.size) {
-                monthLabels[index]
-            } else {
-                ""
+            return value.toInt().let { index ->
+                if (index in monthLabels.indices) {
+                    monthLabels[index]
+                } else {
+                    ""
+                }
             }
         }
     }
