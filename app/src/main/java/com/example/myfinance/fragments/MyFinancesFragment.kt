@@ -1,5 +1,6 @@
 package com.example.myfinance.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -22,6 +23,7 @@ import kotlin.collections.ArrayList
 
 class MyFinancesFragment : Fragment() {
 
+    private lateinit var context: Context
     private lateinit var binding: FragmentMyFinancesBinding
     private lateinit var myFinancesAdapter: MyFinancesAdapter
     private var currentMonth = Calendar.getInstance().get(Calendar.MONTH)
@@ -31,6 +33,11 @@ class MyFinancesFragment : Fragment() {
     private val financeCollectionName = "finances"
     private val db = FirebaseFirestore.getInstance()
     private val financeCollectionRef = db.collection(financeCollectionName)
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.context = context
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
