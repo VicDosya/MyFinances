@@ -12,6 +12,8 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
+            android:background="#EDEDED"
+            android:elevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     tools:text="2023" />
             </LinearLayout>
 
@@ -58,6 +61,7 @@
         </LinearLayout>
 
         <com.github.mikephil.charting.charts.BarChart
+            android:background="@color/white"
             android:id="@+id/finance_bar_chart"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

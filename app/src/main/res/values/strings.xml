@@ -18,4 +18,6 @@
     <string name="date_textview">Date:</string>
     <string name="enter_the_date">Enter the date</string>
     <string name="add_button">Add</string>
+    <string name="pen_icon">🖊</string>
+    <string name="chart_icon">📊</string>
 </resources>

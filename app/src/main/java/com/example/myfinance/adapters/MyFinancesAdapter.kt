@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinance.R
 import com.example.myfinance.data.MyFinanceModal
@@ -28,7 +29,10 @@ class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
         //If plus variable is true, set it to "+" string, otherwise, "-"
         val symbol = if (myFinance.plus) "+" else "-"
         //Depending on the symbol of the plus variable, decide its color
-        val color = if (myFinance.plus) Color.GREEN else Color.RED
+        val color = if (myFinance.plus) ContextCompat.getColor(
+            holder.itemView.context,
+            R.color.bar_positive
+        ) else ContextCompat.getColor(holder.itemView.context, R.color.bar_negative)
         //Symbol text
         holder.financeSymbol.text = symbol
         holder.financeSymbol.setTextColor(color)
