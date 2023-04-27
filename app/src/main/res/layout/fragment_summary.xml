@@ -4,11 +4,64 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.SummaryFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:text="Summary Fragment" />
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!-- Left Button -->
+        <Button
+            android:id="@+id/left_button"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:text="@string/left_month_button"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- LinearLayout to wrap the month and year vertically -->
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- Year TextView -->
+            <TextView
+                android:id="@+id/year_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="2023" />
+        </LinearLayout>
+
+        <!-- Right Button -->
+        <Button
+            android:id="@+id/right_button"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_weight="1"
+            android:text="@string/right_month_button"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/finance_bar_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.github.mikephil.charting.charts.BarChart>
+    </LinearLayout>
 
 </FrameLayout>
