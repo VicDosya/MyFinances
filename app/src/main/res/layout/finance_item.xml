@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    android:backgroundTint="@color/white"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="3dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
@@ -46,7 +49,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textSize="15sp"
             tools:text="Rent" />
 
         <TextView
@@ -55,13 +59,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="14sp"
             tools:text="20/04/2023" />
     </LinearLayout>
     <!-- Horizontal linebreak between the items -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginHorizontal="10dp"
-        android:background="#BABABA" />
-</LinearLayout>
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:layout_marginHorizontal="10dp"-->
+<!--        android:background="#BABABA" />-->
+</com.google.android.material.card.MaterialCardView>

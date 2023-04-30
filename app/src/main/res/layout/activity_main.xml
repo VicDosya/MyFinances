@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EDEDED"
     tools:context=".activities.MainActivity">
 
     <!-- Vertical LinearLayout to align everything vertical -->
@@ -18,38 +19,22 @@
         <!-- Top app icon, title and logout Button -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFF"
-            android:elevation="10dp"
+            android:layout_height="40dp"
             android:gravity="center"
+            android:background="@color/purple_500"
             android:orientation="horizontal">
-
-            <!-- Blank view left to the app title -->
-            <View
-                android:id="@+id/blankView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/black" />
 
             <!-- App title -->
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:gravity="center"
                 android:text="@string/myfinance_app_title"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textColor="@color/white"
+                android:textSize="19sp"
                 android:textStyle="bold" />
 
-            <!-- Logout button -->
-            <Button
-                android:id="@+id/logout_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="10dp"
-                android:text="@string/log_out_button" />
         </LinearLayout>
 
         <!-- FrameLayout (Used for dynamically add & replace fragments) -->
@@ -76,7 +61,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="@string/my_finances_button" />
+                android:text="@string/pen_icon"
+                android:textSize="25sp"/>
 
             <!-- Vertical linebreak between the two buttons -->
             <View
@@ -91,7 +77,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="5dp"
                 android:layout_weight="1"
-                android:text="@string/summary_button" />
+                android:text="@string/chart_icon"
+                android:textSize="25sp"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
