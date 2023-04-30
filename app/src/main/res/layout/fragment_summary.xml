@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,22 +13,22 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:background="#EDEDED"
-            android:elevation="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#EDEDED"
+            android:elevation="10dp"
             android:gravity="center"
             android:orientation="horizontal">
             <!-- Left Button -->
             <Button
                 android:id="@+id/left_button"
-                android:layout_width="20dp"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
-                android:text="@string/left_month_button"
+                android:importantForAccessibility="no"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                app:icon="@drawable/ic_left" />
 
             <!-- LinearLayout to wrap the month and year vertically -->
             <LinearLayout
@@ -42,29 +43,31 @@
                     android:id="@+id/year_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
                     tools:text="2023" />
             </LinearLayout>
 
             <!-- Right Button -->
             <Button
                 android:id="@+id/right_button"
-                android:layout_width="20dp"
+                android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
-                android:text="@string/right_month_button"
+                android:importantForAccessibility="no"
+                android:paddingStart="18dp"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:icon="@drawable/ic_right" />
         </LinearLayout>
 
         <com.github.mikephil.charting.charts.BarChart
-            android:background="@color/white"
             android:id="@+id/finance_bar_chart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/white" />
     </LinearLayout>
 
     <ProgressBar

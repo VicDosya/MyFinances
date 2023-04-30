@@ -42,7 +42,7 @@ class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
         //Description text
         holder.financeDescription.text = myFinance.description
         //Date text
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd/MM HH:mm", Locale.getDefault())
         holder.financeDate.text = dateFormat.format(myFinance.date.toDate())
     }
 

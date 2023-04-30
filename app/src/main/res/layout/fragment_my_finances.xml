@@ -21,13 +21,13 @@
         <!-- Left Button -->
         <Button
             android:id="@+id/left_button"
-            android:layout_width="20dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_weight="1"
-            android:text="@string/left_month_button"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            app:icon="@drawable/ic_left"
+            android:importantForAccessibility="no"/>
 
         <!-- LinearLayout to wrap the month and year vertically -->
         <LinearLayout
@@ -60,13 +60,15 @@
         <!-- Right Button -->
         <Button
             android:id="@+id/right_button"
-            android:layout_width="20dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
+            android:paddingStart="18dp"
             android:layout_weight="1"
-            android:text="@string/right_month_button"
+            app:icon="@drawable/ic_right"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:importantForAccessibility="no"/>
     </LinearLayout>
 
     <!-- RecyclerView  -->
@@ -105,6 +107,7 @@
         android:focusable="true"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_add_button"
+        app:tint="@android:color/white"
         app:backgroundTint="@color/purple_500"
         app:layout_anchorGravity="bottom|end"
         app:layout_constraintBottom_toBottomOf="parent"

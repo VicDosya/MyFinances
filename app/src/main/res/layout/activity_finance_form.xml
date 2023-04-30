@@ -35,15 +35,23 @@
             android:layout_height="80dp"
             android:orientation="horizontal">
             <!-- Plus TextView -->
-            <TextView
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/bar_negative"-->
+<!--                android:textSize="30sp"-->
+<!--                android:textStyle="bold" />-->
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/minus_symbol"
+                android:layout_gravity="center"
                 android:textColor="@color/bar_negative"
-                android:textStyle="bold"
-                android:textSize="30sp" />
+                app:srcCompat="@drawable/ic_minus"
+                android:importantForAccessibility="no"/>
 
             <!-- Switch Option -->
             <androidx.appcompat.widget.SwitchCompat
@@ -51,19 +59,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_gravity="center"
                 android:scaleX="2"
                 android:scaleY="2" />
 
             <!-- Minus TextView -->
-            <TextView
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/plus_symbol"-->
+<!--                android:textColor="@color/bar_positive"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="30sp" />-->
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="65dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/plus_symbol"
-                android:textColor="@color/bar_positive"
-                android:textStyle="bold"
-                android:textSize="30sp" />
+                android:layout_gravity="center"
+                android:textColor="@color/bar_negative"
+                app:srcCompat="@drawable/ic_plus"
+                android:importantForAccessibility="no"/>
 
         </LinearLayout>
 
@@ -89,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 app:endIconMode="clear_text"
-                app:startIconDrawable="@drawable/ic_add_button"
+                app:startIconDrawable="@drawable/ic_amount"
                 android:layout_marginBottom="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -127,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 app:endIconMode="clear_text"
-                app:startIconDrawable="@drawable/ic_add_button"
+                app:startIconDrawable="@drawable/ic_description"
                 android:layout_marginBottom="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -165,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
                 app:endIconMode="clear_text"
-                app:startIconDrawable="@drawable/ic_add_button"
+                app:startIconDrawable="@drawable/ic_date"
                 android:layout_marginBottom="15dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -184,7 +202,8 @@
         <Button
             android:id="@+id/add_button"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
+            android:textSize="19sp"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="35dp"
             android:text="@string/add_button" />

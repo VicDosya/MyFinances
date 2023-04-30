@@ -59,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="18sp"
+            android:textSize="14sp"
             tools:text="20/04/2023" />
     </LinearLayout>
     <!-- Horizontal linebreak between the items -->
