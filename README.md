@@ -4,3 +4,8 @@ An app that tracks your daily, monthly and yearly finances.
 
 Developed in Android Studio using Kotlin and Firebase (Firestore for cloud database).
 Bar charts made by using: [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart).
+
+Currently working on adding:
+- edit a finance card.
+- delete a finance card.
+- add app icon.
