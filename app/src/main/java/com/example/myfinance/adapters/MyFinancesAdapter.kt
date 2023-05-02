@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinance.R
@@ -56,7 +57,7 @@ class MyFinancesAdapter(
         val dateFormat = SimpleDateFormat("dd/MM HH:mm", Locale.getDefault())
         holder.financeDate.text = dateFormat.format(myFinance.date.toDate())
 
-        //Set OnClickListener for the finance card
+        //Set OnClickListener for the finance card deletion
         holder.itemView.setOnClickListener {
             deleteFinanceCard(position)
         }
@@ -70,8 +71,8 @@ class MyFinancesAdapter(
     }
 
     private fun deleteFinanceCard(position: Int) {
-        if (position >= 0 && position < myFinancesList.size) {
-            val finance = myFinancesList[position]
+        val finance = myFinancesList.getOrNull(position)
+        if (finance != null) {
             val amount = finance.amount
             val description = finance.description
             val date = finance.date
@@ -88,9 +89,10 @@ class MyFinancesAdapter(
                     .whereEqualTo("plus", plus)
                     .get()
                     .addOnSuccessListener { querySnapshot ->
-                        for (document in querySnapshot.documents) {
+                        querySnapshot.documents.forEach { document ->
                             document.reference.delete()
                         }
+                        Toast.makeText(context, "Success! Please refresh.", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { exception ->
                         Log.d("Fire Store", "Error deleting document: ", exception)
