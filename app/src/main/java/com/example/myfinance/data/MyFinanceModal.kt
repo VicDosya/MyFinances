@@ -9,4 +9,4 @@ data class MyFinanceModal(
     val date: Timestamp = Timestamp.now()
 )
 
-val financeList = emptyList<MyFinanceModal>()
+val financeList = ArrayList<MyFinanceModal>()

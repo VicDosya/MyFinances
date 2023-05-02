@@ -14,6 +14,7 @@ import com.example.myfinance.R
 import com.example.myfinance.activities.FinanceFormActivity
 import com.example.myfinance.adapters.MyFinancesAdapter
 import com.example.myfinance.data.MyFinanceModal
+import com.example.myfinance.data.financeList
 import com.example.myfinance.databinding.FragmentMyFinancesBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -80,7 +81,7 @@ class MyFinancesFragment : Fragment() {
         binding.myFinancesRecyclerView.layoutManager = LinearLayoutManager(activity)
 
         //Apply 'financeList' dummy data from MyFinanceModal.kt
-        myFinancesAdapter = MyFinancesAdapter(com.example.myfinance.data.financeList)
+        myFinancesAdapter = MyFinancesAdapter(requireContext(), financeList)
         //Apply adapter to the recycler list
         binding.myFinancesRecyclerView.adapter = myFinancesAdapter
         //Return the updated view variable
@@ -97,7 +98,7 @@ class MyFinancesFragment : Fragment() {
         binding.plusAmountTextview.text = getString(R.string.total_plus_amount, totalPlusAmount)
         binding.minusAmountTextview.text = getString(R.string.total_minus_amount, totalMinusAmount)
         //Update the adapter and the recycler view
-        myFinancesAdapter = MyFinancesAdapter(financeList)
+        myFinancesAdapter = MyFinancesAdapter(requireContext(), financeList)
         binding.myFinancesRecyclerView.adapter = myFinancesAdapter
     }
 

@@ -1,5 +1,6 @@
 package com.example.myfinance.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 
 class SummaryFragment : Fragment() {
+    //Typically fixes the IllegalStateException error
+    private lateinit var context: Context
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.context = context
+    }
 
     //Initialize viewBinding
     private lateinit var binding: FragmentSummaryBinding

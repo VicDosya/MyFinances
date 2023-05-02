@@ -1,6 +1,8 @@
 package com.example.myfinance.adapters
 
-import android.graphics.Color
+import android.app.AlertDialog
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +11,20 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myfinance.R
 import com.example.myfinance.data.MyFinanceModal
+import com.example.myfinance.data.financeList
+import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
+class MyFinancesAdapter(
+    private val context: Context,
+    private val myFinancesList: List<MyFinanceModal>
+) :
     RecyclerView.Adapter<MyFinancesAdapter.MyViewHolder>() {
+
+    private val financeCollectionName = "finances"
+    private val db = FirebaseFirestore.getInstance()
+    private val financeCollectionRef = db.collection(financeCollectionName)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.finance_item, parent, false)
@@ -44,6 +55,11 @@ class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
         //Date text
         val dateFormat = SimpleDateFormat("dd/MM HH:mm", Locale.getDefault())
         holder.financeDate.text = dateFormat.format(myFinance.date.toDate())
+
+        //Set OnClickListener for the finance card
+        holder.itemView.setOnClickListener {
+            deleteFinanceCard(position)
+        }
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,5 +67,42 @@ class MyFinancesAdapter(private val myFinancesList: List<MyFinanceModal>) :
         val financeAmount: TextView = itemView.findViewById(R.id.amount_text_view)
         val financeDescription: TextView = itemView.findViewById(R.id.description_text_view)
         val financeDate: TextView = itemView.findViewById(R.id.date_text_view)
+    }
+
+    private fun deleteFinanceCard(position: Int) {
+        if (position >= 0 && position < myFinancesList.size) {
+            val finance = myFinancesList[position]
+            val amount = finance.amount
+            val description = finance.description
+            val date = finance.date
+            val plus = finance.plus
+
+            val alertDialogBuilder = AlertDialog.Builder(context)
+            alertDialogBuilder.setTitle("Delete Finance Card")
+            alertDialogBuilder.setMessage("Are you sure you want to delete this  finance card?")
+            alertDialogBuilder.setPositiveButton("Delete") { dialog, _ ->
+                //Remove from Firebase fire store
+                financeCollectionRef.whereEqualTo("amount", amount)
+                    .whereEqualTo("description", description)
+                    .whereEqualTo("date", date)
+                    .whereEqualTo("plus", plus)
+                    .get()
+                    .addOnSuccessListener { querySnapshot ->
+                        for (document in querySnapshot.documents) {
+                            document.reference.delete()
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.d("Fire Store", "Error deleting document: ", exception)
+                    }
+                dialog.dismiss()
+            }
+            alertDialogBuilder.setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            alertDialogBuilder.create().show()
+        } else {
+            Log.d("MyFinancesAdapter", "Invalid position: $position")
+        }
     }
 }
